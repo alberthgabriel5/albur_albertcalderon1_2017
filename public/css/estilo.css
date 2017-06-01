@@ -81,20 +81,20 @@ header, section#contenido, footer{
     text-align: center;
 }
 
-header h1, nav{
+header h1, nav,#frmLogin{
     display: inline-block;
     max-width: 100%;
     vertical-align: middle;
 }
 
 nav ul{
-    list-style: none;
+    list-style: circle;
 }
 
 nav li{
     display: inline-block;
     padding: 0.1em;
-    vertical-align: top;
+    vertical-align: middle;
 }
 
 section#principal, aside{
@@ -127,6 +127,7 @@ footer{
     color: #000;
     font-size: 0.85em;
     padding: 0.75em 0;
+    vertical-align: bottom;
 }
 
 .fade{
@@ -151,11 +152,52 @@ th, td {
 
 
 
+ txtUser,txtPassword,btnlogin{
+   display: table-row-group;
+   color:#009933;
+   text-align: right;
+   
+    
+}
 
+input[type="submit"]#btnlogin{
+    background: #1E6381;
+    color: #ffff99;
+    font-size: 1em;
+    padding: 0.25em;
+    
+}
 
+input[type="submit"]#btnlogin:hover{
+    background: #ffff99 ;
+    color: #1E6381;
+    font-weight: bold;
+    
+}
 
-
-
+input[type="text"]#txtUser,
+input[type="text"]#txtPassword,
+input[type="password"]#txtPassword{
+    background: #ffff99;
+    border-radius: 0.25em;
+    color:#1E6381;
+    font-size: 1em;
+    padding: 0.25em;
+    font-weight: bold;
+    border-color: #1E6381;
+    border: #57ABBB;
+    border-radius: 0.5em;
+    margin: 0.1 auto;
+    width: 20%;
+    
+    
+}
+#frmLogin{
+     text-align: right;
+     align-content: flex-end;
+     align-items: flex-end;
+     align-self: flex-end;
+}
 
 
 

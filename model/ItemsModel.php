@@ -10,10 +10,9 @@ class ItemsModel {
     } // constructor
     
     public function listar(){
-        $consulta=$this->db->prepare('call sp_listar()');
-        $consulta->execute();
         
-        return $consulta;
+        
+        return null;
         
     } // listar
     

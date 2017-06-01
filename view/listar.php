@@ -8,17 +8,17 @@
         <th>Item</th>
     </tr>
     
-    <?php
-        while($item=$vars['listado']->fetch()){
-    ?>
+    //<?php
+//        while($item=$vars['listado']->fetch()){
+//    ?>
     <tr>
-        <td><?php echo $item[0] ?></td>
-        <td><?php echo $item[1] ?></td>
+        <td>//<?php echo $item[0] ?></td>
+        <td>//<?php echo $item[1] ?></td>
     </tr>
     
-    <?php 
-        }
-    ?>
+    //<?php 
+//        }
+//    ?>
 </table>
 
 <?php

@@ -10,10 +10,15 @@
 //    $config->set('dbuser', 'adm');
 //    $config->set('dbpass', 'saucr.092');
     
-    $config->set('dbhost', '127.0.0.1');
-    $config->set('dbname', 'mgasoluciones');
-    $config->set('dbuser', 'root');
-    $config->set('dbpass', '');
+//    $config->set('dbhost', '127.0.0.1');
+//    $config->set('dbname', 'mgasoluciones');
+//    $config->set('dbuser', 'root');
+//    $config->set('dbpass', '');
+    
+    $config->set('dbhost', '163.178.107.130');
+    $config->set('dbname', 'IF5100_2017_B21190');
+    $config->set('dbuser', 'sqlserver');
+    $config->set('dbpass', 'saucr.12');
     
     
     
