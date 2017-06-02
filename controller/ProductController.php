@@ -1,12 +1,10 @@
 <?php
-
-require 'model/DefaultModel.php';
-require 'model/TypeProductModel.php';
-require 'model/ProductModel.php';
+require_once  'model/TypeProductModel.php';
+ require_once  'model/ProductModel.php';
 
 class ProductController {
     
-    private $model;
+    
     private $tipoProductoModel;
     private $productoModel;
     public $result;
@@ -14,14 +12,14 @@ class ProductController {
 
 
     public function __construct() {
-        $this->model=new DefaultModel();
+        
         $this->tipoProductoModel=new TypeProductModel();
         $this->productoModel=new ProductModel();
         
     } // constructor
     
     public function listar(){
-        echo "**************<br><br><br>";
+//        echo "**************<br><br><br>";
         if(isset($_GET['tipoProducto'])){
             $respuesta="";                   
                 
@@ -81,8 +79,24 @@ class ProductController {
             
             
             $this->result = $this->tipoProductoModel->getTypeProduct();            
-            $this->products = $this->productoModel->getProducts();            
-            include 'view/Product/ProductView.php';
+            $this->products = $this->productoModel->getProducts(); 
+            
+            if (@$_SESSION['user'] == 1) {            
+             
+             include 'view/Product/ProductView.php';
+            
+        }else
+        if (@$_SESSION['user'] == 2) {
+            $this->view->show('client/indexView_1.php');
+        }else
+        if (@$_SESSION['user'] == 3) {
+
+            include 'view/Product/ProductView_1.php';
+        }     
+        else {
+            include 'view/Product/ProductView_1.php';
+        }          
+           
             
         }else{
             include 'view/indexView.php';

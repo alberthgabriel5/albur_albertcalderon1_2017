@@ -5,6 +5,6 @@
 <h1>Index</h1>
 
 <?php
-    include_once 'public/Midle.php';
-    include_once 'public/footer.php';
+    
+    include_once 'public/footer_1.php';
 ?>

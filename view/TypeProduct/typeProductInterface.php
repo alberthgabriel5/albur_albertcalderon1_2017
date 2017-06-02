@@ -1,6 +1,6 @@
 <?php
-require_once 'Domain/typeProduct.php';
-include 'view/header.php';
+require_once 'poo/typeProduct.php';
+include 'public/header.php';
 ?>
 
 
@@ -10,9 +10,10 @@ if (isset($this->result)) {
         //echo '->'.$tem->getIdTypeProduct().' -  '.$tem->getNameTypeProduct().'<br>';
 
         echo '<form action="?tipoProducto=actualizar" method="post">                         
-            <input type="hidden" id="idType"      name="idType"       value=' . $tem->getIdTypeProduct() . '><br> 
-            <input type="text" id="txtNameType" name="txtNameType"  value=' . $tem->getNameTypeProduct() . '><br>
-            <input type="submit" id="update" name="update" value="Actualizar" />        
+            <input type="hidden" id="idType"      name="idType"       value=' . $tem->getIdTypeProduct() . '>
+            <input type="text" id="txtNameType" name="txtNameType"  value=' . $tem->getNameTypeProduct() . '>
+            <input type="submit" id="update" name="update" value="Actualizar" />
+            <br><br>
             </form>';
     }
 }
@@ -21,7 +22,7 @@ if (isset($this->result)) {
 
 
 <?php
-    include_once 'view/Midle.php';
+    include_once 'public/Midle.php';
 ?>
 
 <form action="?tipoProducto=registrar" method="post">
@@ -33,7 +34,7 @@ if (isset($this->result)) {
 </form>  
 
 <?php
-include_once 'view/footer.php';
+include_once 'public/footer.php';
 ?>
 
 

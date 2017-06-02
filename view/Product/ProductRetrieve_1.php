@@ -1,84 +1,66 @@
-<!DOCTYPE html>
 
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
-        <?php
-        include_once '../../Business/Product/ProductBusiness.php';
-        $productBusiness = new ProductBusiness();
-        $products = $productBusiness->getProducts();
-        ?>
-    <center>
-        <br>
-        <table>
-            <tr>
-                <td><a href="../../index.php">Inicio</a></td>
-                <td><a href="ProductCreate.php">Registrar</a></td>
-                <td><a href="ProductRetrieve.php">Visualizar</a><td>
-                <td><a href="ProductUpdate.php">Actualizar</a><td>
-                <td><a href="ProductState.php">Estado</a><td>
-            </tr>
-        </table>
-        <hr>
-        <h1>Visualizar Productos</h1>
-        <br>        
-        <table>
-            <th>Nombre</th>
-            <th>Marca</th>
-            <th>Modelo</th>
-            <th>Serie</th>            
-            <th>Precio</th>
-            <th>Color</th>           
-            <th>Descripción</th>
-            <th>Características</th>
+<hr>
+<h1>Visualizar Productos</h1>
+<br>        
+<table>
+    <tr>
+        <th>Nombre</th>
+        <th>Marca</th>
+        <th>Modelo</th>
+        <th>Serie</th>            
+        <th>Precio</th>                       
+        <th>Descripción</th>
+        <th>Tipo</th>
+        
 
-            <?php
-            foreach ($products as $currentProducts) {
-                ?>                
-                <tr>
-                    <td><label><?php echo $currentProducts->getName(); ?>&emsp;&emsp;&emsp;</label></td>
-                    <td><label><?php echo $currentProducts->getBrand(); ?>&emsp;&emsp;&emsp;</label></td>
-                    <td><label><?php echo $currentProducts->getModel(); ?>&emsp;&emsp;&emsp;</label></td>
-                    <td><label><?php echo $currentProducts->getSerie(); ?>&emsp;&emsp;&emsp;</label></td>
-                    <td><label><?php
-                            $price = number_format($currentProducts->getPrice());
-                            echo '₡ ' . $price
-                            ?>&emsp;&emsp;&emsp;</label></td>
-                    <td>
-                        <?php
-                        $colors = split(";", $currentProducts->getColor());
-                        for ($i = 0; $i < sizeof($colors); $i++) {
-                            if($colors[$i] != ""){
-                            ?>
-                            <input type="text" disabled="true" style="background:
-                                   <?php echo $colors[$i]; ?>;
-                                   border: none;  width: 30px; height: 30px;"/>                            
-                            <?php
-                            }
-                        }
-                        ?>
+    </tr>
+    
+    <?php
+    foreach ($this->products as $currentProducts) {
+        ?>    
+    
+      
+        <tr>
+        <input type="hidden" id="idProduct" name='idProduct' 
+               value=<?php echo '"' . $currentProducts->getIdProduct() . '"'; ?>/>
+        <td><input type="text" id="txtName" name="txtName" 
+                   data-validation="custom" data-validation-regexp="^[a-zA-Z_áéíóúñ\s]*$"
+                   value= <?php echo '"' . $currentProducts->getName() . '"'; ?>></td>
+        <td><input type="text" id="txtBrand" name="txtBrand" 
+                   data-validation="custom" data-validation-regexp="^[a-zA-Z_áéíóúñ\s]*$"
+                   value= <?php echo '"' . $currentProducts->getBrand() . '"'; ?>></td>
+        <td><input type="text" id="txtModel" name="txtModel"
+                   data-validation="alphanumeric" data-validation-allowing="-_"
+                   value= <?php echo '"' . $currentProducts->getModel() . '"'; ?>/></td>
+        <td><input type="text" id="txtSerie" name="txtSerie"
+                   data-validation="alphanumeric" data-validation-allowing="-_"
+                   value= <?php echo '"' . $currentProducts->getSerie() . '"'; ?>/></td>
+        <td><input type="text" id="txtPrice" name="txtPrice" onkeypress="mascara(this, cpf)"  
+                   value= <?php
+                   $price = number_format($currentProducts->getPrice());
+                   echo '' . $price . '';
+                   ?> /></td>
+        <td><input type="text" id="txtDescription" name="txtDescription"                                
+                   value="<?php echo $currentProducts->getDescription(); ?>" /></td>
+        
+         <?php
+        $valorTipo = "";
+                foreach ($this->result as $typeProdu) {
+                    if ($typeProdu->getIdTypeProduct() == $currentProducts->getTypeProduct()) {
+                        $valorTipo = $typeProdu->getNameTypeProduct();
+                    }
+                }
+                ?>  
+        <td><input type="text" id="txtDescription" name="txtDescription"                                
+                   value="<?php echo $valorTipo ?>" /></td>
 
-                    </td>           
-                    <td><label><?php echo $currentProducts->getDescription(); ?>&emsp;&emsp;&emsp;</label></td>           
-                    <td><label><?php echo $currentProducts->getCharacteristics(); ?>&emsp;&emsp;&emsp;</label></td>           
-                </tr>
-                <tr>
-                    <?php
-                    foreach ($currentProducts->getPathImages() as $path) {
-                        ?>
-                        <td><img style="width: 100px; height: 100px;"src="<?php echo $path; ?>">&emsp;&emsp;</td>
-                            <?php
-                        }
-                        ?>
+        </tr>
+       
+    <?php
+}
+?>
+</table>
 
-                </tr>
-                <?php
-            }
-            ?>
-        </table>
-    </center>
-</body>
-</html>
+
+
+

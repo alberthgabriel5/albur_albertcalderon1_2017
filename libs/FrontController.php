@@ -27,20 +27,29 @@ class FrontController {
                     session_destroy();                    
                     header('location: ./index.php');                    
                 }
-                if (@$_SESSION['user'] == 1) {
-                    
+                if (@$_SESSION['user'] == 1) {                 
                     
                     
                     if(isset($_GET['tipoProducto'])){
             $respuesta="";                   
             $respuesta="";     
-            $controllerName ='Producto';
+            $controllerName ='ProductController';
             
             $nombreAccion = 'listar';
             
         }else if (isset($_GET['producto'])) {
-            $respuesta="";     
-            $controllerName ='Producto';
+            $respuesta="";  
+            
+            $controllerName ='ProductController';
+            
+            $nombreAccion = 'listar';
+            
+            
+            
+        }else if (isset($_GET['supplier'])) {
+            $respuesta="";  
+            
+            $controllerName ='ProveedorController';
             
             $nombreAccion = 'listar';
             
@@ -54,11 +63,11 @@ class FrontController {
                 }else
                 if (@$_SESSION['user'] == 3) {
                     if (!empty($_GET['controlador']) && $_GET['controlador'] != 'logout')
-                        $this->controllerName = $_GET['controlador'] . 'Controller';
+                        $controllerName = $_GET['controlador'] . 'Controller';
                 } else
                 if (@$_SESSION['user'] == 3) {
                     if (!empty($_GET['controlador']) && $_GET['controlador'] != 'logout')
-                        $this->controllerName = $_GET['controlador'] . 'Controller';
+                        $controllerName = $_GET['controlador'] . 'Controller';
                 }
             } else {
 
@@ -99,7 +108,7 @@ class FrontController {
                        
             if (isset($_GET['producto'])) {
             $respuesta="";  
-            $controllerName='Producto';
+            $controllerName='ProductController';
             $nombreAccion = 'listar';
             
             
@@ -107,10 +116,10 @@ class FrontController {
             
         if (isset($_GET['producto'])) {
             $respuesta="";
-            $controllerName='Producto';
+            $controllerName='ProductController';
             $nombreAccion = 'listar';
-        }elseif (!empty($_GET['controlador']) && $_GET['controlador'] != 'login')
-                    $this->controllerName = $_GET['controlador'] . 'Controller';
+        }elseif (!empty($_GET['controlador']))
+                    $controllerName = $_GET['controlador'] . 'Controller';
                             
                 
                 
@@ -128,7 +137,8 @@ class FrontController {
         if (is_file($rutaControlador))
             require $rutaControlador;
         else
-            die('Controlador no encontrado - 404 not found');
+            
+            die($rutaControlador.'Controlador no encontrado - 404 not found');
 
         if (is_callable(array($controllerName, $nombreAccion)) == FALSE) {
             trigger_error($controllerName . '->' . $nombreAccion . ' no existe', E_USER_NOTICE);

@@ -31,13 +31,16 @@
                                 ?>
                                 <li><a href="?tipoProducto">Tipo de Producto</a></li>
                                 <li><a href="?producto">Producto</a></li>
+                                <li><a href="?supplier">Proveedor</a></li>
                                 <?php
                             } else
                             if ($_SESSION['user'] == 2) {
                                 ?> <?php
                             } else
                             if ($_SESSION['user'] == 3) {
-                                ?> <?php
+                                ?> 
+                                <li><a href="?producto">Producto</a></li>
+                                    <?php
                 }
                             ?>
                             <li><a href="?logout">Cerrar</a>

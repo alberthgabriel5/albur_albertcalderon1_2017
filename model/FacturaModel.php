@@ -2,7 +2,7 @@
 
 include 'poo/Product.php';
 
-class ProductModel {
+class FacturaModel {
 
     protected $db;
 
@@ -11,8 +11,8 @@ class ProductModel {
 
         $this->db = SPDO::singleton();
     }
-
-    function insertProduct($product) {
+    
+    function insertFactura($product) {
 
         try {
             $tsql = 'sp_insert_producto ?,?,?,?,?,?,?;';
@@ -142,6 +142,10 @@ class ProductModel {
             die(print_r($e->getMessage()));
         }
     }
-
-//fin función getTypeProducts
+    
+    
+    
+    
+    
+    
 }

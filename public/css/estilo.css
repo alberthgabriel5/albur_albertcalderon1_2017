@@ -42,7 +42,7 @@ form div{
     margin: 0.5em;
 }
 
-input[type="email"], input[type="text"], textarea{
+input[type="email"],input[type="tel"], input[type="text"], textarea{
     background: #EEE;
     border-radius: 0.25em;
     color: #F60;
@@ -52,15 +52,14 @@ input[type="email"], input[type="text"], textarea{
 }
 
 input[type="submit"]{
-    background: #990000;
+    background: #F60;
     color: #500;
     font-size: 1.25em;
     padding: 0.25em;
-    
 }
 
 input[type="submit"]:hover{
-    background: #FFF;
+    background: #7BBFD5;
     color: #000;
 }
 label{
@@ -81,20 +80,20 @@ header, section#contenido, footer{
     text-align: center;
 }
 
-header h1, nav,#frmLogin{
+header h1, nav{
     display: inline-block;
     max-width: 100%;
     vertical-align: middle;
 }
 
 nav ul{
-    list-style: circle;
+    list-style: none;
 }
 
 nav li{
     display: inline-block;
     padding: 0.1em;
-    vertical-align: middle;
+    vertical-align: top;
 }
 
 section#principal, aside{
@@ -137,7 +136,7 @@ footer{
 }
 
 table, td, th {    
-    border: 1px solid #ddd;
+    
     text-align: left;
 }
 

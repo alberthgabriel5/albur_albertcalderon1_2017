@@ -1,4 +1,5 @@
 <?php
+
 include 'poo/typeProduct.php';
 
 /**
@@ -9,7 +10,6 @@ include 'poo/typeProduct.php';
  */
 class TypeProductModel {
 
-   
     protected $db;
 
     public function __construct() {
@@ -17,6 +17,7 @@ class TypeProductModel {
 
         $this->db = SPDO::singleton();
     }
+
 // constructor
 
     /*     * *
@@ -25,7 +26,7 @@ class TypeProductModel {
      */
 
     public function insertTypeProduct($typeProduct) {
-try{
+        try {
             $tsql = "sp_insert_tipo_producto '?';";
 
             $GetResult = $this->db->prepare($tsql);
@@ -39,18 +40,15 @@ try{
         } catch (Exception $e) {
             die(print_r($e->getMessage()));
         }
-    
+    }
 
+//fin function insertProduct
 
-    }//fin function insertProduct
-    
-    
     /**
      * metodo para consultar si existe el dato ya registrado en la base de datos
      * @param type $nameTypeProduct nombre del nuevo tipo de producto
      * @return type regresa
      */
-
     public function isExist($nameTypeProduct) {
 
         $query = "select count(nombre_tipo_producto) as total from tb_tipo_producto where nombre_tipo_producto='" . $nameTypeProduct . "';";
@@ -72,22 +70,30 @@ try{
      */
 
     public function getTypeProduct() {
+        try {
+            $tsql = 'sp_get_tipos_de_productos';
+            $stmt = $this->db->prepare($tsql);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO :: FETCH_ASSOC);
 
-        $query = 'sp_get_tipos_de_productos;';
-        $stmt = sqlsrv_query($this->conn, $query);
-        $array = array();
-        while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
-            $currentData = new typeProduct();
-            $currentData->setIdTypeProduct($row['id']);
-            $currentData->setNameTypeProduct($row['nombre']);
-            array_push($array, $currentData);
+            $array = array();
+
+            foreach ($result as $row) {
+                $currentData = new typeProduct();
+                $currentData->setIdTypeProduct($row['id']);
+                $currentData->setNameTypeProduct($row['nombre']);
+                array_push($array, $currentData);
+            }
+
+
+
+            return $array;
+            return $array;
+        } catch (Exception $e) {
+            die(print_r($e->getMessage()));
         }
-        sqlsrv_free_stmt($stmt);
-
-
-
-        return $array;
     }
+
 //fin función getTypeProducts
 
 
@@ -96,16 +102,20 @@ try{
      * Función que permite la actualización de un tipo de producto en la base de datos
      */
     public function updateTypeProduct($typeProduct) {
-
-
-        $query = "sp_update_tipo_producto "
-                . $typeProduct->getIdTypeProduct() . ",'"
-                . $typeProduct->getNameTypeProduct() . "';";
-        $queryUpdate = sqlsrv_query($this->conn, $query);  
-        if ($queryUpdate) {
-            return true;
-        } else {
-            return false;
+        try {
+            $tsql = 'sp_update_tipo_producto ?,? ';
+            $params = array($typeProduct->getIdTypeProduct(),
+                $stmt->getNameTypeProduct());
+            $stmt = $this->db->prepare($tsql);
+            $stmt->execute($params);
+            $imagen = $stmt->fetch(PDO::FETCH_ASSOC);
+            IF ($imagen === 1) {
+                return TRUE;
+            } else {
+                return FALSE;
+            }
+        } catch (Exception $e) {
+            die(print_r($e->getMessage()));
         }
     }
 

@@ -10,9 +10,7 @@ class ItemsController {
      public function listar(){
          
          
-         if (@$_SESSION['user'] == 1) {
-             if (isset($_GET['controlador']) && $_GET['controlador']= 'producto'){
-             }
+         if (@$_SESSION['user'] == 1) {            
              
             $this->view->show('admin/indexView.php');
             

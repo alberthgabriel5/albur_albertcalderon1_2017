@@ -19,11 +19,12 @@ class supplier
      * @param type $emailSupplier
      * @param type $telephoneSupplier
      */
-    public function supplier( $nameSupplier, $emailSupplier, $telephoneSupplier)
+    public function supplier()
     {//inicio del metodo constructor
-        $this->nameSupplier = $nameSupplier;
-        $this->emailSupplier = $emailSupplier;
-        $this->telephoneSupplier = $telephoneSupplier;
+        $this->idSupplier=0;
+        $this->nameSupplier = "";
+        $this->emailSupplier = "";
+        $this->telephoneSupplier = "";
         $this->activeSupplier = TRUE;
     }//fin del metodo constructor
     
