@@ -12,18 +12,18 @@ class FacturaModel {
         $this->db = SPDO::singleton();
     }
     
-    function insertFactura($product) {
+    function insertFactura($factura) {
 
         try {
             $tsql = 'sp_insert_producto ?,?,?,?,?,?,?;';
 
-            $params = array($product->getName(),
-                $product->getBrand(),
-                $product->getModel(),
-                $product->getSerie(),
-                $product->getDescription(),
-                $product->getTypeProduct(),
-                $product->getPrice());
+            $params = array($factura->getName(),
+                $factura->getBrand(),
+                $factura->getModel(),
+                $factura->getSerie(),
+                $factura->getDescription(),
+                $factura->getTypeProduct(),
+                $factura->getPrice());
             $stmt = $this->db->prepare($tsql);
             $stmt->execute($params);
 //            $Imagen =1;

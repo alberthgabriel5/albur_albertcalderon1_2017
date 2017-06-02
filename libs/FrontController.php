@@ -1,6 +1,6 @@
 <?php
 
-require_once 'POO/client.php';
+require_once 'poo/client.php';
 require_once 'model/TypeProductModel.php';
 require_once 'model/ProductModel.php';
 
